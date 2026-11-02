@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReFloat</title>
+<meta name="description" content="ReFloat turns end-of-life boats into a school, a workshop and a shop, in that order.">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --ink: #1d2a33;
+    --muted: #5a6872;
+    --accent: #1f5f7a;
+    --rule: #d8d3c7;
+    --card: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #11181d;
+      --ink: #e6e9eb;
+      --muted: #9aa7b0;
+      --accent: #7fb8d1;
+      --rule: #2a353d;
+      --card: #172128;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.6 Georgia, "Times New Roman", serif;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 3rem 1rem 4rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  h1 { font-size: 2.6rem; margin: 0 0 .5rem; letter-spacing: .02em; }
+  h2 {
+    font: 600 .8rem/1.2 system-ui, -apple-system, sans-serif;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--accent); margin: 2.5rem 0 .75rem;
+  }
+  .lede { font-size: 1.25rem; margin: 0; }
+  p, li { margin: 0 0 .75rem; }
+  .chain {
+    display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none;
+    font: 500 .95rem/1.2 system-ui, -apple-system, sans-serif;
+  }
+  .chain li {
+    margin: 0; padding: .45rem .8rem; background: var(--card);
+    border: 1px solid var(--rule); border-radius: 999px;
+  }
+  ol.pillars { padding-left: 1.25rem; }
+  ol.pillars li strong { display: block; }
+  .meta, footer { font: .9rem/1.5 system-ui, -apple-system, sans-serif; color: var(--muted); }
+  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.25rem; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>ReFloat</h1>
+    <p class="lede">ReFloat turns end-of-life boats into a school, a workshop and a shop, in that order.</p>
+  </header>
+
+  <h2>Mission</h2>
+  <p>We care for our coast locally, we teach what the ocean receives, we take direct action on what boats leave behind, and we count the impact.</p>
+
+  <h2>What it is</h2>
+  <p>ReFloat is a continuous social design project: a place for raising awareness of ocean impact, open to collect, co-repair, co-transform and recycle boats and their gear, on and off the water, with the people who live alongside them.</p>
+  <p>It holds three priorities equally: financially self-sustaining, socially positive and environmentally sustainable.</p>
+
+  <h2>How an object moves through ReFloat</h2>
+  <ul class="chain">
+    <li>Raise awareness</li>
+    <li>Collect</li>
+    <li>Repair</li>
+    <li>Transform</li>
+    <li>Recycle</li>
+  </ul>
+  <p>A boat that can still sail is kept sailing first.</p>
+
+  <h2>Four pillars</h2>
+  <ol class="pillars">
+    <li><strong>Ocean education (lead)</strong>Schools visit the workshop to see what a boat leaves behind. Each dismantled boat becomes a case: its story, its materials, and where its waste would have gone.</li>
+    <li><strong>Reuse and repurpose</strong>Tested equipment resold as it is; sails, canvas and expired safety gear made into new products.</li>
+    <li><strong>Learning through work</strong>Supervised trainees, at a distance from the labour market, learning repair and repurposing.</li>
+    <li><strong>Responsible disposal</strong>One door for an end-of-life boat: equipment harvested, hull sent to a certified partner, certificate issued.</li>
+  </ol>
+
+  <h2>Where it starts</h2>
+  <p>The Netherlands first, beginning in a neighbourhood maker space in Amsterdam. Portugal and Brazil are being explored.</p>
+
+  <h2>Status</h2>
+  <p>Early stage, built in the open. This page records the concept as it stood on 2 November 2026.</p>
+
+  <footer>
+    <p>A <a href="https://participa.studio">Participa Studio</a> project, initiated by Bernardo van de Schepop.</p>
+    <p>Text on this site is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>, from 2 November 2026. The name and logo are not covered by this licence.</p>
+  </footer>
+</main>
+</body>
+</html>
