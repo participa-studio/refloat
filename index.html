@@ -20,23 +20,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
 <style>
   :root {
-    --bg: #f6f4ef;
-    --ink: #1d2a33;
-    --muted: #5a6872;
-    --accent: #1f5f7a;
-    --rule: #d8d3c7;
-    --card: #ffffff;
+    --bg: #0e1418;
+    --ink: #eef1f2;
+    --muted: #b3bec5;
+    --accent: #8fc6dd;
+    --rule: rgba(255, 255, 255, .16);
+    --card: rgba(255, 255, 255, .08);
+    --panel: rgba(12, 18, 22, .80);
     --font: "Inter", Helvetica, Arial, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #11181d;
-      --ink: #e6e9eb;
-      --muted: #9aa7b0;
-      --accent: #7fb8d1;
-      --rule: #2a353d;
-      --card: #172128;
-    }
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   body {
@@ -46,7 +38,31 @@
     font: 400 17px/1.6 var(--font);
     -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 44rem; margin: 0 auto; padding: 3rem 1rem 4rem; }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1;
+    background:
+      linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)),
+      url("images/janie-seddon-1280.jpg") 62% 50% / cover no-repeat;
+  }
+  @media (min-width: 900px) {
+    body::before {
+      background:
+        linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)),
+        url("images/janie-seddon-2400.jpg") 62% 50% / cover no-repeat;
+    }
+  }
+  main {
+    max-width: 44rem; margin: 2rem auto; padding: 2.5rem 1.5rem 2rem;
+    background: var(--panel);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border-radius: 4px;
+  }
+  @media (min-width: 1200px) {
+    main { margin-left: 6vw; }
+  }
+  @media (max-width: 600px) {
+    main { margin: 0; border-radius: 0; min-height: 100vh; }
+  }
   header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2rem; }
   h1 { font-weight: 700; font-size: 2.6rem; margin: 0 0 .5rem; letter-spacing: .02em; }
   h2 {
@@ -114,7 +130,8 @@
 
   <footer>
     <p>A <a href="https://participa.studio">Participa Studio</a> project, initiated by Bernardo van de Schepop.</p>
-    <p>Text on this site is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>, from 2 November 2026. The name and logo are not covered by this licence.</p>
+    <p>Background photo: Janie Seddon shipwreck, Motueka, New Zealand, by <a href="https://unsplash.com/@anetek?utm_source=refloat&amp;utm_medium=referral">Aneta Hartmannová</a> on <a href="https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic?utm_source=refloat&amp;utm_medium=referral">Unsplash</a>, used under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+    <p>Text on this site is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>, from 2 November 2026. The name, logo and background photo are not covered by this licence.</p>
   </footer>
 </main>
 </body>
