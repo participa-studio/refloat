@@ -8,12 +8,12 @@ Website: https://refloat.earth
 
 ## Licence
 
-Content in this repository is licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/), from 10 September 2026. See `LICENSE.txt`.
+Content in this repository is licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/), from 2 November 2026, unless stated otherwise. See `LICENSE.txt`.
 
-The name "ReFloat" and any logo are not covered by this licence.
+The names, brand and background photos are not covered by this licence.
 
 ## Record
 
-- 10 September 2026: first concept and business plan drafted; text licensed under CC BY-SA 4.0 from this date.
-- 2 November 2026: concept published here, as it stood on that date.
+- 10 September 2026: first concept and business plan drafted with the Social Enterprise Canvas.
+- 2 November 2026: concept published here, as it stood on that date; content licensed under CC BY-SA 4.0 from this date.
 - 3 November 2026: brand decisions recorded in `BRAND.md`; tagline added to the site.
