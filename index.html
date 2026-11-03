@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ReFloat</title>
 <meta name="description" content="ReFloat turns end-of-life boats into a school, a workshop and a shop, in that order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
 <style>
   :root {
     --bg: #f6f4ef;
@@ -13,6 +16,7 @@
     --accent: #1f5f7a;
     --rule: #d8d3c7;
     --card: #ffffff;
+    --font: "Inter", Helvetica, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -29,13 +33,14 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font: 17px/1.6 Georgia, "Times New Roman", serif;
+    font: 400 17px/1.6 var(--font);
+    -webkit-font-smoothing: antialiased;
   }
   main { max-width: 44rem; margin: 0 auto; padding: 3rem 1rem 4rem; }
   header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2rem; }
-  h1 { font-size: 2.6rem; margin: 0 0 .5rem; letter-spacing: .02em; }
+  h1 { font-weight: 700; font-size: 2.6rem; margin: 0 0 .5rem; letter-spacing: .02em; }
   h2 {
-    font: 600 .8rem/1.2 system-ui, -apple-system, sans-serif;
+    font: 700 .8rem/1.2 var(--font);
     text-transform: uppercase; letter-spacing: .12em;
     color: var(--accent); margin: 2.5rem 0 .75rem;
   }
@@ -44,7 +49,7 @@
   p, li { margin: 0 0 .75rem; }
   .chain {
     display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none;
-    font: 500 .95rem/1.2 system-ui, -apple-system, sans-serif;
+    font: 400 .95rem/1.2 var(--font);
   }
   .chain li {
     margin: 0; padding: .45rem .8rem; background: var(--card);
@@ -52,7 +57,7 @@
   }
   ol.pillars { padding-left: 1.25rem; }
   ol.pillars li strong { display: block; }
-  .meta, footer { font: .9rem/1.5 system-ui, -apple-system, sans-serif; color: var(--muted); }
+  .meta, footer { font: 400 .9rem/1.5 var(--font); color: var(--muted); }
   footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.25rem; }
   a { color: var(--accent); }
 </style>
