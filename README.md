@@ -15,3 +15,4 @@ The name "ReFloat" and any logo are not covered by this licence.
 ## Record
 
 - 2 November 2026: concept published, as it stood on that date.
+- 3 November 2026: brand decisions recorded in `BRAND.md`; tagline added to the site.
