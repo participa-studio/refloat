@@ -38,18 +38,33 @@
     font: 400 17px/1.6 var(--font);
     -webkit-font-smoothing: antialiased;
   }
-  body::before {
-    content: ""; position: fixed; inset: 0; z-index: -1;
-    background:
-      linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)),
-      url("images/janie-seddon-1280.jpg") 62% 50% / cover no-repeat;
+  .bg { position: fixed; inset: 0; z-index: -1; background: var(--bg); }
+  .bg__slide {
+    position: absolute; inset: 0; opacity: 0;
+    background-size: cover; background-repeat: no-repeat;
+    transition: opacity 2s ease;
+  }
+  .bg__slide.is-active { opacity: 1; }
+  .bg__slide--wreck {
+    background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("images/janie-seddon-1280.jpg");
+    background-position: 62% 50%;
+  }
+  .bg__slide--bw {
+    background-image: linear-gradient(rgba(8, 12, 15, .50), rgba(8, 12, 15, .65)), url("images/old-boat-bw-1280.jpg");
+    background-position: 50% 60%;
+  }
+  .bg__slide--grass {
+    background-image: linear-gradient(rgba(8, 12, 15, .45), rgba(8, 12, 15, .60)), url("images/boat-in-grass-1280.jpg");
+    background-position: 70% 50%;
   }
   @media (min-width: 900px) {
-    body::before {
-      background:
-        linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)),
-        url("images/janie-seddon-2400.jpg") 62% 50% / cover no-repeat;
-    }
+    .bg__slide--grass { background-image: linear-gradient(rgba(8, 12, 15, .45), rgba(8, 12, 15, .60)), url("images/boat-in-grass-2400.jpg"); }
+    .bg__slide--wreck { background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("images/janie-seddon-2400.jpg"); }
+    .bg__slide--bw { background-image: linear-gradient(rgba(8, 12, 15, .50), rgba(8, 12, 15, .65)), url("images/old-boat-bw-2400.jpg"); }
+  }
+  #photo-credit { transition: opacity .6s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .bg__slide, #photo-credit { transition: none; }
   }
   main {
     max-width: 50rem; margin: 2rem auto; padding: 3rem 3.5rem 2.5rem;
@@ -89,6 +104,11 @@
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true">
+  <div class="bg__slide bg__slide--wreck is-active"></div>
+  <div class="bg__slide bg__slide--bw"></div>
+  <div class="bg__slide bg__slide--grass"></div>
+</div>
 <main>
   <header>
     <h1>ReFloat</h1>
@@ -130,10 +150,38 @@
 
   <footer>
     <p>A <a href="https://participa.studio">Participa Studio</a> project, initiated by Bernardo van de Schepop.</p>
-    <p>Background photo: Janie Seddon shipwreck, Motueka, New Zealand, by <a href="https://unsplash.com/@anetek?utm_source=refloat&amp;utm_medium=referral">Aneta Hartmannová</a> on <a href="https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic?utm_source=refloat&amp;utm_medium=referral">Unsplash</a>, used under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+    <p id="photo-credit">Background photo: Janie Seddon shipwreck, Motueka, New Zealand, by <a href="https://unsplash.com/@anetek?utm_source=refloat&amp;utm_medium=referral">Aneta Hartmannová</a> on <a href="https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic?utm_source=refloat&amp;utm_medium=referral">Unsplash</a>, used under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
     <p>Text by Bernardo van de Schepop, Participa Studio, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>, from 2 November 2026.</p>
-    <p>The name, logo and background photo are not covered by this licence.</p>
+    <p>The name, logo and background photos are not covered by this licence.</p>
   </footer>
 </main>
+<script>
+(function () {
+  var slides = document.querySelectorAll(".bg__slide");
+  var credit = document.getElementById("photo-credit");
+  var u = "?utm_source=refloat&amp;utm_medium=referral";
+  var lic = ', used under the <a href="https://unsplash.com/license">Unsplash License</a>.';
+  var credits = [
+    'Background photo: Janie Seddon shipwreck, Motueka, New Zealand, by <a href="https://unsplash.com/@anetek' + u + '">Aneta Hartmannová</a> on <a href="https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic' + u + '">Unsplash</a>' + lic,
+    'Background photo: old boat, by <a href="https://unsplash.com/@giseg3' + u + '">Gilles Seguin</a> on <a href="https://unsplash.com/photos/a-black-and-white-photo-of-an-old-boat-TU1Rbp5FW-o' + u + '">Unsplash</a>' + lic,
+    'Background photo: boat in the grass, by <a href="https://unsplash.com/@kristina001' + u + '">Kristina Kutleša</a> on <a href="https://unsplash.com/photos/a-boat-in-the-grass-RtDI8tqqh1Y' + u + '">Unsplash</a>' + lic
+  ];
+  var i = 0;
+  function show(n) {
+    slides[i].classList.remove("is-active");
+    i = n;
+    slides[i].classList.add("is-active");
+    credit.style.opacity = 0;
+    setTimeout(function () { credit.innerHTML = credits[i]; credit.style.opacity = 1; }, 600);
+  }
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) {
+    var r = Math.floor(Math.random() * slides.length);
+    if (r !== 0) { slides[0].classList.remove("is-active"); i = r; slides[i].classList.add("is-active"); credit.innerHTML = credits[i]; }
+    return;
+  }
+  setInterval(function () { show((i + 1) % slides.length); }, 12000);
+})();
+</script>
 </body>
 </html>
