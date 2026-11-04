@@ -121,25 +121,15 @@
   .bg__slide {
     position: absolute; inset: 0; opacity: 0;
     background-size: cover; background-repeat: no-repeat;
-    transition: opacity 2s ease;
+    transition: opacity 2.5s ease;
   }
   .bg__slide.is-active { opacity: 1; }
-  .bg__slide--wreck {
+  .bg__slide--first {
     background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("../images/janie-seddon-1280.jpg");
     background-position: 62% 50%;
   }
-  .bg__slide--bw {
-    background-image: linear-gradient(rgba(8, 12, 15, .50), rgba(8, 12, 15, .65)), url("../images/old-boat-bw-1280.jpg");
-    background-position: 50% 60%;
-  }
-  .bg__slide--grass {
-    background-image: linear-gradient(rgba(8, 12, 15, .45), rgba(8, 12, 15, .60)), url("../images/boat-in-grass-1280.jpg");
-    background-position: 70% 50%;
-  }
   @media (min-width: 900px) {
-    .bg__slide--grass { background-image: linear-gradient(rgba(8, 12, 15, .45), rgba(8, 12, 15, .60)), url("../images/boat-in-grass-2400.jpg"); }
-    .bg__slide--wreck { background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("../images/janie-seddon-2400.jpg"); }
-    .bg__slide--bw { background-image: linear-gradient(rgba(8, 12, 15, .50), rgba(8, 12, 15, .65)), url("../images/old-boat-bw-2400.jpg"); }
+    .bg__slide--first { background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("../images/janie-seddon-2400.jpg"); }
   }
   #photo-credit { transition: opacity .6s ease; }
   @media (prefers-reduced-motion: reduce) {
@@ -218,10 +208,8 @@
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true">
-  <div class="bg__slide bg__slide--wreck is-active"></div>
-  <div class="bg__slide bg__slide--bw"></div>
-  <div class="bg__slide bg__slide--grass"></div>
+<div class="bg" aria-hidden="true" data-base="../images/">
+  <div class="bg__slide bg__slide--first is-active"></div>
 </div>
 <main>
   <header>
@@ -315,30 +303,39 @@
 </main>
 <script>
 (function () {
-  var slides = document.querySelectorAll(".bg__slide");
+  var SL = [{"f": "janie-seddon", "n": "Aneta Hartmannová", "u": "anetek", "p": "62% 50%", "o": [0.35, 0.55]}, {"f": "point-reyes-islet", "n": "Pretty Pink", "u": "infinitexplorer", "p": "60% 50%", "o": [0.4, 0.6]}, {"f": "old-boat-bw", "n": "Gilles Seguin", "u": "giseg3", "p": "50% 60%", "o": [0.5, 0.65]}, {"f": "henrico-boat", "n": "Robin Jonathan Deutsch", "u": "rodeutsch", "p": "60% 55%", "o": [0.45, 0.6]}, {"f": "murmansk-snow", "n": "Ahab Sun", "u": "panchiosd", "p": "55% 55%", "o": [0.5, 0.65]}, {"f": "large-boat-water", "n": "Faez Daniel", "u": "f_danielsss", "p": "65% 50%", "o": [0.4, 0.6]}, {"f": "boat-in-grass", "n": "Kristina Kutleša", "u": "kristina001", "p": "70% 50%", "o": [0.45, 0.6]}, {"f": "heswall-boats", "n": "Mitchell Orr", "u": "mitchorr", "p": "50% 65%", "o": [0.4, 0.6]}, {"f": "rajamahendravaram", "n": "Vizag Explore", "u": "vizagexplore", "p": "55% 55%", "o": [0.4, 0.6]}, {"f": "point-reyes-wreck", "n": "Ben Cliff", "u": "bencliff", "p": "55% 50%", "o": [0.45, 0.62]}, {"f": "snowy-wooden", "n": "Antje Winkler", "u": "antjewinkler", "p": "70% 50%", "o": [0.5, 0.65]}, {"f": "heswall-boat", "n": "Mitchell Orr", "u": "mitchorr", "p": "60% 55%", "o": [0.45, 0.62]}];
+  var bg = document.querySelector(".bg");
+  var base = bg.getAttribute("data-base");
   var credit = document.getElementById("photo-credit");
-  var u = "?utm_source=refloat&amp;utm_medium=referral";
-  var lic = ' · <a href="https://unsplash.com/license" target="_blank" rel="noopener">Licença Unsplash</a>';
-  var credits = [
-    'Foto: <a href="https://unsplash.com/@anetek' + u + '" target="_blank" rel="noopener">Aneta Hartmannová</a>' + lic,
-    'Foto: <a href="https://unsplash.com/@giseg3' + u + '" target="_blank" rel="noopener">Gilles Seguin</a>' + lic,
-    'Foto: <a href="https://unsplash.com/@kristina001' + u + '" target="_blank" rel="noopener">Kristina Kutleša</a>' + lic
-  ];
+  var q = "?utm_source=refloat&amp;utm_medium=referral";
+  var size = window.innerWidth >= 900 ? "2400" : "1280";
+  function url(k) { return base + SL[k].f + "-" + size + ".jpg"; }
+  function css(k) { var o = SL[k].o; return "linear-gradient(rgba(8, 12, 15, " + o[0] + "), rgba(8, 12, 15, " + o[1] + ")), url(\"" + url(k) + "\")"; }
+  function cred(k) { return 'Foto: <a href="https://unsplash.com/@' + SL[k].u + q + '" target="_blank" rel="noopener">' + SL[k].n + '</a> · <a href="https://unsplash.com/license" target="_blank" rel="noopener">Licença Unsplash</a>'; }
+  var els = [bg.querySelector(".bg__slide")];
+  function el(k) {
+    if (!els[k]) { var d = document.createElement("div"); d.className = "bg__slide"; d.style.backgroundImage = css(k); d.style.backgroundPosition = SL[k].p; bg.appendChild(d); els[k] = d; }
+    return els[k];
+  }
+  function preload(k) { var im = new Image(); im.src = url(k); }
   var i = 0;
   function show(n) {
-    slides[i].classList.remove("is-active");
+    var next = el(n); void next.offsetWidth;
+    els[i].classList.remove("is-active");
+    next.classList.add("is-active");
     i = n;
-    slides[i].classList.add("is-active");
     credit.style.opacity = 0;
-    setTimeout(function () { credit.innerHTML = credits[i]; credit.style.opacity = 1; }, 600);
+    setTimeout(function () { credit.innerHTML = cred(i); credit.style.opacity = 1; }, 600);
+    preload((i + 1) % SL.length);
   }
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (still) {
-    var r = Math.floor(Math.random() * slides.length);
-    if (r !== 0) { slides[0].classList.remove("is-active"); i = r; slides[i].classList.add("is-active"); credit.innerHTML = credits[i]; }
+    var r = Math.floor(Math.random() * SL.length);
+    if (r !== 0) { els[0].classList.remove("is-active"); el(r).classList.add("is-active"); i = r; credit.innerHTML = cred(r); }
     return;
   }
-  setInterval(function () { show((i + 1) % slides.length); }, 12000);
+  preload(1);
+  setInterval(function () { show((i + 1) % SL.length); }, 20000);
 })();
 </script>
 <script>
