@@ -97,6 +97,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+<script>document.documentElement.className += " js";</script>
 <style>
   :root {
     --bg: #0e1418;
@@ -131,6 +132,7 @@
   @media (min-width: 900px) {
     .bg__slide--first { background-image: linear-gradient(rgba(8, 12, 15, .35), rgba(8, 12, 15, .55)), url("images/janie-seddon-2400.jpg"); }
   }
+  .js .bg__slide--first { background-image: none; }
   #photo-credit { transition: opacity .6s ease; }
   @media (prefers-reduced-motion: reduce) {
     .bg__slide, #photo-credit { transition: none; }
@@ -312,30 +314,34 @@
   function url(k) { return base + SL[k].f + "-" + size + ".jpg"; }
   function css(k) { var o = SL[k].o; return "linear-gradient(rgba(8, 12, 15, " + o[0] + "), rgba(8, 12, 15, " + o[1] + ")), url(\"" + url(k) + "\")"; }
   function cred(k) { return 'Photo: <a href="https://unsplash.com/@' + SL[k].u + q + '" target="_blank" rel="noopener">' + SL[k].n + '</a> · <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash License</a>'; }
-  var els = [bg.querySelector(".bg__slide")];
+  var first = bg.querySelector(".bg__slide");
+  var els = {};
+  function paint(d, k) { d.style.backgroundImage = css(k); d.style.backgroundPosition = SL[k].p; }
   function el(k) {
-    if (!els[k]) { var d = document.createElement("div"); d.className = "bg__slide"; d.style.backgroundImage = css(k); d.style.backgroundPosition = SL[k].p; bg.appendChild(d); els[k] = d; }
+    if (!els[k]) { var d = document.createElement("div"); d.className = "bg__slide"; paint(d, k); bg.appendChild(d); els[k] = d; }
     return els[k];
   }
   function preload(k) { var im = new Image(); im.src = url(k); }
-  var i = 0;
-  function show(n) {
-    var next = el(n); void next.offsetWidth;
-    els[i].classList.remove("is-active");
-    next.classList.add("is-active");
-    i = n;
-    credit.style.opacity = 0;
-    setTimeout(function () { credit.innerHTML = cred(i); credit.style.opacity = 1; }, 600);
-    preload((i + 1) % SL.length);
-  }
+  var order = [];
+  for (var n = 0; n < SL.length; n++) order.push(n);
+  for (var m = order.length - 1; m > 0; m--) { var r = Math.floor(Math.random() * (m + 1)); var t = order[m]; order[m] = order[r]; order[r] = t; }
+  var pos = 0;
+  els[order[0]] = first; paint(first, order[0]);
+  credit.innerHTML = cred(order[0]);
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (still) {
-    var r = Math.floor(Math.random() * SL.length);
-    if (r !== 0) { els[0].classList.remove("is-active"); el(r).classList.add("is-active"); i = r; credit.innerHTML = cred(r); }
-    return;
+  if (still) return;
+  function show() {
+    var cur = els[order[pos]];
+    pos = (pos + 1) % order.length;
+    var k = order[pos], next = el(k); void next.offsetWidth;
+    cur.classList.remove("is-active");
+    next.classList.add("is-active");
+    credit.style.opacity = 0;
+    setTimeout(function () { credit.innerHTML = cred(k); credit.style.opacity = 1; }, 600);
+    preload(order[(pos + 1) % order.length]);
   }
-  preload(1);
-  setInterval(function () { show((i + 1) % SL.length); }, 20000);
+  preload(order[1]);
+  setInterval(show, 20000);
 })();
 </script>
 <script>
