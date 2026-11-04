@@ -166,6 +166,24 @@
   }
   h1.logo { margin: 0 0 1.5rem; line-height: 0; }
   h1.logo svg { display: block; width: 100%; max-width: 26rem; height: auto; color: var(--ink); }
+  .rl { position: relative; margin: 1rem 0 0; padding-left: 1.1rem; }
+  .rl::before { content: ""; position: absolute; left: 0; top: 1.6rem; bottom: 1.6rem; border-left: 1px solid var(--rule); }
+  .rl__end { font: 700 .7rem/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 .5rem; }
+  .rl__end--bottom { margin: .5rem 0 0; }
+  .rl__band { border-radius: 4px; padding: .6rem .75rem .25rem; margin: 0 0 .4rem; }
+  .rl__band--1 { background: rgba(143, 198, 221, .12); }
+  .rl__band--2 { background: rgba(150, 205, 175, .09); }
+  .rl__band--3 { background: rgba(225, 185, 130, .09); }
+  .rl__band h3 { font: 700 .72rem/1.3 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .35rem; }
+  .rl ol { list-style: none; margin: 0; padding: 0; }
+  .rl li { position: relative; margin: 0 0 .35rem; padding: .3rem 0 .3rem .7rem; border-left: 3px solid transparent; font-size: .95rem; line-height: 1.45; }
+  .rl li b { font-weight: 700; }
+  .rl li .code { display: inline-block; min-width: 2rem; font-weight: 700; color: var(--muted); }
+  .rl li.is-rf { border-left-color: var(--accent); }
+  .rl li.is-rf--main { border-left-width: 6px; background: rgba(143, 198, 221, .12); border-radius: 0 3px 3px 0; }
+  .rl .tag { display: inline-block; margin-left: .4rem; padding: .05rem .45rem; border: 1px solid var(--accent); border-radius: 999px; font: 700 .68rem/1.4 var(--font); letter-spacing: .04em; color: var(--accent); vertical-align: .1em; white-space: nowrap; }
+  .rl__note { margin: 1rem 0 .25rem; }
+  .rl__credit { font-size: .8rem; color: var(--muted); }
   .lang { float: right; font: 700 .75rem/1 var(--font); letter-spacing: .1em; margin: .25rem 0 0 1rem; }
   .lang a { color: var(--muted); text-decoration: none; }
   .lang a[aria-current="page"] { color: var(--ink); }
@@ -234,6 +252,40 @@
     <li><strong>Learning through work</strong>Trainees at a distance from the labour market learn at the bench, with supervision: repairing, sewing, repurposing.</li>
     <li><strong>Responsible disposal</strong>One door for a boat at the end of its life: useful parts stay, the hull goes to a certified partner, and the owner receives a certificate.</li>
   </ol>
+
+  <h2>Where ReFloat sits on the R-ladder</h2>
+  <p>The R-ladder ranks ways of dealing with products. The higher the rung, the more of a product's value is kept.</p>
+  <div class="rl" role="group" aria-label="R-ladder, from most circular (R0) to least circular (R9)">
+    <p class="rl__end">↑ More circular</p>
+    <div class="rl__band rl__band--1">
+      <h3>Smarter use and making</h3>
+      <ol>
+        <li><span class="code">R0</span> <b>Refuse</b>: do without it, or let another product do the job.</li>
+        <li><span class="code">R1</span> <b>Rethink</b>: use it more intensively, for example by sharing.</li>
+        <li><span class="code">R2</span> <b>Reduce</b>: make and use it with fewer materials.</li>
+      </ol>
+    </div>
+    <div class="rl__band rl__band--2">
+      <h3>Extend the life of product and parts</h3>
+      <ol>
+        <li><span class="code">R3</span> <b>Reuse</b>: pass it on to someone who can use it as it is.</li>
+        <li class="is-rf"><span class="code">R4</span> <b>Repair</b>: fix it so it keeps working. <span class="tag">ReFloat · boats kept sailing</span></li>
+        <li class="is-rf"><span class="code">R5</span> <b>Refurbish</b>: bring an old one back into good condition. <span class="tag">ReFloat · boats kept sailing</span></li>
+        <li><span class="code">R6</span> <b>Remanufacture</b>: use its parts in a new product of the same kind.</li>
+        <li class="is-rf is-rf--main"><span class="code">R7</span> <b>Repurpose</b>: give it, or its parts, a new job. <span class="tag">ReFloat · main</span></li>
+      </ol>
+    </div>
+    <div class="rl__band rl__band--3">
+      <h3>Useful use of materials</h3>
+      <ol>
+        <li><span class="code">R8</span> <b>Recycle</b>: break it down to recover its materials.</li>
+        <li><span class="code">R9</span> <b>Recover</b>: burn it to recover energy.</li>
+      </ol>
+    </div>
+    <p class="rl__end rl__end--bottom">↓ Less circular</p>
+  </div>
+  <p class="rl__note">To refloat a boat is to get it floating again after it has run aground or sunk. The name belongs to the same family: it extends life rather than breaking things down.</p>
+  <p class="rl__credit">Based on Potting et al. (2017), PBL. <a href="https://www.pbl.nl/en/publications/circular-economy-measuring-innovation-in-product-chains" target="_blank" rel="noopener">Source</a></p>
 
   <h2>How it works</h2>
   <p>The workshop is designed so that those who buy keep the school open. Income is meant to come from the shop for tested parts, products made from sails and canvas, sessions with schools and organisations, and fees paid by owners, marinas and municipalities for removing boats and harvesting their parts. Those who learn (pupils, teachers, trainees and refitters on small budgets) do not always pay. The balance between sources is not yet set.</p>
